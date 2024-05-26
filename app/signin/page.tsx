@@ -1,5 +1,5 @@
 import React from 'react'
-import Signinform from '../signin/signinForm'
+import Signinform from './signinForm'
 
 type Props = {}
 

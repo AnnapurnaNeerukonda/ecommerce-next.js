@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import pool from '../../../lib/db';
+import pool from '../../lib/db';
 import bcrypt from 'bcrypt';
 import type { RowDataPacket, ResultSetHeader } from 'mysql2/promise';
 
