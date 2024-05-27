@@ -1,7 +1,16 @@
-import Image from "next/image";
-import Navbar from "./components/navbar";
-export default function Home() {
+import Image from 'next/image'
+import Navbar from './components/navbar'
+import { getCurrentUser } from './lib/session'
+// import Container from './components/container/Container'
+
+export default async function Home() {
+  const user = await getCurrentUser()
+  // console.log(user)
   return (
-   <Navbar/>
-  );
+    <div className='px-5 max-w-[1280px] mx-auto'>
+      <Navbar/>
+      <hr />
+      {/* <Container/> */}
+    </div>
+  )
 }
