@@ -13,3 +13,22 @@ model User {
   email    String   @unique
   password String   // Add the password field here
 }
+model Product{
+  id Int @id @default(autoincrement())  
+  title String @db.VarChar(255)
+  description String @db.Text
+  category String
+  style String
+  store String
+  size String
+  inventory Int
+  color String
+  price Int
+  images String @db.Text
+  userId Int
+  User User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Cart Cart[]
+  Review Review[]
+  Purchased Purchased[]
+  @@index([userId])
+}
