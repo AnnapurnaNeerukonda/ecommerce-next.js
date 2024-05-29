@@ -12,6 +12,7 @@ model User {
   name     String
   email    String   @unique
   password String   // Add the password field here
+  Product Product[]
 }
 model Product{
   id Int @id @default(autoincrement())  
