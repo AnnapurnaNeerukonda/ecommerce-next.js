@@ -4,7 +4,7 @@ import Link from 'next/link'
 import {CiShoppingCart} from "react-icons/ci"
 import {BsChevronCompactUp} from "react-icons/bs"
 import {BiSearch} from "react-icons/bi"
-import SearchBar from './SearchBar'
+import SearchBar from './searchbar'
 import {signIn, signOut, useSession } from 'next-auth/react'
 
 type Props = {}

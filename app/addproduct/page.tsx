@@ -1,5 +1,5 @@
 import React from 'react'
-import Productform from '../addproduct/productform'
+import Productform from './productform'
 
 type Props = {}
 

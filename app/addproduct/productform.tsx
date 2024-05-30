@@ -4,11 +4,10 @@ import axios from 'axios'
 import { signIn, signOut,useSession } from 'next-auth/react'
 import Navbar from '../components/navbar'
 import { useRouter } from 'next/navigation'
-import Size from '../components/size'
-import Color from '../components/color'
-import Para from '../components/para'
+import Size from '../components/Size'
+import Color from '../components/Color'
+import Para from '../components/Para'
 import ImageUpload from '../components/ImageUpload'
-
 type Props = {}
 
 const Productform = (props: Props) => {
