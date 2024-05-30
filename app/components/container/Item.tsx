@@ -1,15 +1,31 @@
 import React from 'react';
-import { AiOutlineHeart } from "react-icons/ai";
 import Link from 'next/link';
-import pool from "../../lib/db"; // Import the local MySQL pool configuration
+import pool from "../../lib/db";
 import type { RowDataPacket } from 'mysql2/promise';
 
 type Props = {};
 
+const parseImages = (images: string) => {
+    try {
+        const parsed = JSON.parse(images);
+        // Check if parsed result is an array
+        if (Array.isArray(parsed)) {
+            return parsed;
+        } else if (typeof parsed === 'string') {
+            // If it's a string, split by commas (handling cases where it's a single string)
+            return parsed.split(',').map((url) => url.trim());
+        } else {
+            return [];
+        }
+    } catch (e) {
+        // If JSON.parse fails, fallback to treating it as a comma-separated string
+        return images.split(',').map((url) => url.trim());
+    }
+};
+
 const Item = async (props: Props) => {
     let products: any[] = [];
     try {
-        // Query the database to get all products
         const [rows]: [RowDataPacket[], any] = await pool.query('SELECT * FROM products');
         products = rows;
     } catch (error) {
@@ -29,7 +45,7 @@ const Item = async (props: Props) => {
                     <div key={product.id}>
                         <Link href={`/dashboard/${product.id}`}>
                             <div className='relative rounded-lg'>
-                                {product.images.split(',').map((image: string, index: number) => (
+                                {parseImages(product.images).map((image: string, index: number) => (
                                     <img 
                                         key={index}
                                         src={image.trim()} 

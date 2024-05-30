@@ -1,7 +1,7 @@
 import React,{useEffect,useRef, useState} from 'react'
 import {EditorContent, useEditor} from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import TextEditor from './TextEditor'
+import TextEditor from '../components/TextEditor'
 
 interface Para{
     setDescription: React.Dispatch<React.SetStateAction<any>>

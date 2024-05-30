@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { GrAdd } from "react-icons/gr";
-import { SketchPicker } from 'react-color';
-
+import {SketchPicker} from 'react-color'
 interface Props {
   setFormData: React.Dispatch<React.SetStateAction<any>>;
   Color: string;

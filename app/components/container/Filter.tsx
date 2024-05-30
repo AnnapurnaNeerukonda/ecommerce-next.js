@@ -60,7 +60,7 @@ const Filter = (props: Props) => {
     const getAllColors = async () => {
         try{
             const response = await axios.get('/api/color');
-            // console.log("Colors:", response.data);
+             console.log("Colors:", response.data);
             return response.data
         }
         catch(error){
@@ -71,21 +71,23 @@ const Filter = (props: Props) => {
 
     useEffect(() => {
         getAllColors().then((allColors) => {
-            if(allColors){
-                const hextSet = new Set<string>()
+            if (allColors) {
+                const hexSet = new Set<string>();
                 allColors.forEach((element: any) => {
-                    const colors = element.color.split(',')
-                    colors.forEach((color: string) => {
-                        const hextValue = color.replace("#", "")
-                        hextSet.add(hextValue)
-                    })
-                })
-                const uniqueHexValues: string[] = Array.from(hextSet)
-                setHexValues(uniqueHexValues)
+                    if (element.color && typeof element.color === 'string') {  // Check if element.color is defined and is a string
+                        const colors = element.color.split(',');
+                        colors.forEach((color: string) => {
+                            const hexValue = color.replace("#", "");
+                            hexSet.add(hexValue);
+                        });
+                    }
+                });
+                const uniqueHexValues: string[] = Array.from(hexSet);
+                setHexValues(uniqueHexValues);
             }
-        })
-    }, [])
-
+        });
+    }, []);
+    
 
     const allHexValue = allHexValues
     
