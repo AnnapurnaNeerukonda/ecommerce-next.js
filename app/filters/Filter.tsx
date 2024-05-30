@@ -62,37 +62,34 @@ const Filter = (props: Props) => {
     const getAllColors = async () => {
         try {
             const response = await axios.get('/api/color');
-            // console.log("Colors:", response.data);
+            console.log("Colors:", response.data);
             return response.data;
         } catch (error) {
             console.error("Error", error);
             return null;
         }
     };
-
+    
     useEffect(() => {
         getAllColors().then((allColors) => {
             if (allColors) {
                 const hexSet = new Set<string>();
-                allColors.forEach((element: any) => {
-                    if (element.color) { // Ensure element.color is defined
-                        const colors = element.color.split(',');
-                        colors.forEach((color: string) => {
-                            const hexValue = color.replace("#", "");
-                            hexSet.add(hexValue);
-                        });
-                    } else {
-                        console.warn(`Element without color property found:`, element);
-                    }
+                allColors.forEach((colorString: string) => { // Iterate over color strings
+                    const colors = colorString.split(','); // Split color string by comma
+                    colors.forEach((color: string) => {
+                        const hexValue = color.replace("#", "").trim(); // Remove "#" and whitespace
+                        hexSet.add(hexValue);
+                    });
                 });
                 const uniqueHexValues: string[] = Array.from(hexSet);
                 props.setAllHexValues(uniqueHexValues);
             }
         });
     }, []);
+    
 
     const allHexValue = props.allHexValues;
-
+    console.log("allHexValue",allHexValue)
     return (
         <div className='relative'>
             <div className={`md:w-[250px] border-l-[0.5px] border-r-[0.5px] ${showFilter ? "max-md:w-[250px]" : "w-0 max-md:invisible"}`}>
